@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login.LoginActivity">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textinputTelefonoLogin"
+        android:layout_margin="25dp"
+        android:hint="Número de celular"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/textinputCodigoLogin">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTelefonoLogin"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textinputCodigoLogin"
+        android:visibility="gone"
+        android:hint="CÓDIGO SMS"
+        android:layout_marginBottom="25dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintTop_toBottomOf="@id/textinputTelefonoLogin"
+        app:layout_constraintStart_toStartOf="@id/textinputTelefonoLogin"
+        app:layout_constraintEnd_toEndOf="@id/textinputTelefonoLogin"
+        app:layout_constraintBottom_toTopOf="@id/buttonLogin">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editCodigoLogin"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonLogin"
+        android:text="Aceptar"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintTop_toBottomOf="@id/textinputCodigoLogin"
+        app:layout_constraintStart_toStartOf="@id/textinputTelefonoLogin"
+        app:layout_constraintEnd_toEndOf="@id/textinputTelefonoLogin"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

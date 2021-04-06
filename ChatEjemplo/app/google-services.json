@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "586154230693",
+    "project_id": "pruebachat-708ea",
+    "storage_bucket": "pruebachat-708ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586154230693:android:bbde6c0675eb2359f59e4c",
+        "android_client_info": {
+          "package_name": "dev.matt2393.chatejemplo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586154230693-821tiueovuunp0e339kpjkt8gl7ij1ct.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR8rcjzdHRMNXfqZv9oeO9pE6GLjoJs6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586154230693-821tiueovuunp0e339kpjkt8gl7ij1ct.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
