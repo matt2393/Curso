@@ -3,13 +3,15 @@ package dev.matt2393.chatejemplo.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
+import com.google.firebase.ktx.Firebase
 import dev.matt2393.chatejemplo.MainActivity
+import dev.matt2393.chatejemplo.Model.Entitys.Salas
 import dev.matt2393.chatejemplo.databinding.ActivityLoginBinding
 import java.util.concurrent.TimeUnit
 
@@ -26,12 +28,19 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if(FirebaseAuth.getInstance().currentUser!=null) {
+            startActivity(
+                Intent(this, MainActivity::class.java)
+            )
+            finish()
+        }
+
         binding.buttonLogin.setOnClickListener {
             if(codigoEnviado) {
                 val cod = binding.editCodigoLogin.text.toString()
                 comprobar(cod)
             } else {
-                val num = binding.editTelefonoLogin.text.toString()
+                val num = "+"+binding.editTelefonoLogin.text.toString()
                 prepareLogin(num)
             }
         }
@@ -43,6 +52,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             override fun onVerificationFailed(p0: FirebaseException) {
+                Log.e("ErrorPhone", p0.toString())
                 Toast.makeText(this@LoginActivity, "Error ", Toast.LENGTH_SHORT).show()
             }
 
@@ -82,15 +92,15 @@ class LoginActivity : AppCompatActivity() {
         viewmodel.user.removeObservers(this)
         viewmodel.error.removeObservers(this)
         viewmodel.isLoading.removeObservers(this)
+        viewmodel.usSave.removeObservers(this)
+        viewmodel.users.removeObservers(this)
+        viewmodel.salaSave.removeObservers(this)
     }
 
     private fun initObservers() {
         viewmodel.user.observe(this, {
             if(it!=null) {
-                startActivity(
-                    Intent(this, MainActivity::class.java)
-                )
-                finish()
+                viewmodel.saveU(it.phoneNumber!!)
             }
         })
         viewmodel.error.observe(this, {
@@ -101,6 +111,35 @@ class LoginActivity : AppCompatActivity() {
 
             } else {
 
+            }
+        })
+
+        viewmodel.usSave.observe(this, {
+            if(it) {
+                viewmodel.getUs(FirebaseAuth.getInstance().currentUser!!.uid)
+            }
+        })
+
+        viewmodel.users.observe(this, {
+            if(it.isNotEmpty()) {
+                val uid = FirebaseAuth.getInstance().currentUser!!.uid
+                val nombre = FirebaseAuth.getInstance().currentUser!!.phoneNumber!!
+                val array = arrayListOf<Salas>()
+                it.forEach { us->
+                    val sala = Salas()
+                    sala.nombre = arrayListOf(Salas.Us(uid,nombre), Salas.Us(us.uid, us.nombre))
+                    sala.uids = arrayListOf(uid, us.uid)
+                    array.add(sala)
+                }
+                viewmodel.saveSalas(array)
+            }
+        })
+        viewmodel.salaSave.observe(this, {
+            if(it) {
+                startActivity(
+                    Intent(this, MainActivity::class.java)
+                )
+                finish()
             }
         })
     }

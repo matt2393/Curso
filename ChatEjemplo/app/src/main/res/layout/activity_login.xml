@@ -21,6 +21,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:id="@+id/editTelefonoLogin"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -40,7 +41,8 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editCodigoLogin"/>
+            android:id="@+id/editCodigoLogin"
+            android:inputType="number"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
