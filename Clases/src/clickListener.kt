@@ -1,0 +1,3 @@
+interface clickListener {
+    fun onClick()
+}

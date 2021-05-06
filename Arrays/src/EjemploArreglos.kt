@@ -123,7 +123,37 @@ fun main() {
     /**
      * otra forma de inicializar un array estatico
      */
-    val ar2: Array<Int> = arrayOf(3,4,5)
+    val ar2: Array<Int> = arrayOf(3,5,1,9)
+
+    /**
+     * ordenamiento
+     */
+    val r = ar2.sortedArray()
+    println()
+    ar2.forEach {
+        println(it)
+    }
+    println()
+    r.forEach {
+        println(it)
+    }
+
+    /**
+     * Ordenar por un parametro del objeto
+     */
+    val productos = arrayListOf(
+            Producto("Pepsi", 5.5),
+            Producto("Choq", 1.0),
+            Producto("Azucar", 10.8),
+            Producto("Papel", 8.3)
+    )
+    productos.sortBy {
+        it.precio
+    }
+    println()
+    println(productos.toString())
+
+
 
 }
 
